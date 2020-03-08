@@ -30,7 +30,7 @@ import com.up.student.base.BaseDAO;
 import com.up.student.dao.StudentDAO;
 
 /**
- * 模块说明： 首页
+ * 模块说明： 学生页面
  *
  */
 public class StudentView extends JFrame {
@@ -47,6 +47,7 @@ public class StudentView extends JFrame {
     public static JTable jTable;
     private JScrollPane jScrollPane;
     private DefaultTableModel myTableModel;
+    private String admin;
 
     public static String[] column = { "id", AppConstants.STUDENT_NAME, AppConstants.STUDENT_SNO,
             AppConstants.STUDENT_SEX, AppConstants.STUDENT_DEPARTMETN, AppConstants.STUDENT_HOMETOWN,
