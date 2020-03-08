@@ -15,14 +15,20 @@ public class Admin {
 	private String name;
 	private String username;
 	private String password;
+	private Integer admin;
+
+
+	public Integer getAdmin() {
+		return admin;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public int getId() {
 		return id;

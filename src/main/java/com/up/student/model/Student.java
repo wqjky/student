@@ -20,6 +20,12 @@ public class Student {
 	private String mark;// 学分
 	private String email;
 	private String tel;// 联系方式
+	private Integer admin;
+
+
+	public Integer getAdmin() {
+		return admin;
+	}
 
 	public int getId() {
 		return id;

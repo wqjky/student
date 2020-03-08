@@ -25,24 +25,30 @@ public class AdminDAO extends BaseDAO {
 		return ad;
 	}
 
-	public boolean queryForLogin(String username, String password) {
-		boolean result = false;
+	public int queryForLogin(String username, String password) {
+		int admin;
 		if (username.length() == 0 || password.length() == 0) {
-			return result;
+			return 0;
 		}
 		String sql = "select * from admin where username=? and password=?";
 		String[] param = { username, password };
 		rs = db.executeQuery(sql, param);
 		try {
 			if (rs.next()) {
-				result = true;
+				if(rs.getString("admin").equals("admin")){
+					return 1;
+				}else if(rs.getString("admin").equals("student")){
+					return 2;
+				}
+			}else{
+				return 0;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			destroy();
 		}
-		return result;
+		return 0;
 	}
 
 }

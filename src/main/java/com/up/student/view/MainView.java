@@ -36,6 +36,7 @@ import com.up.student.dao.StudentDAO;
 public class MainView extends JFrame {
 
 	private static final long serialVersionUID = 5870864087464173884L;
+	private static String username;
 
 	private final int maxPageNum = 99;
 
@@ -53,7 +54,8 @@ public class MainView extends JFrame {
 			AppConstants.STUDENT_MARK, AppConstants.STUDENT_EMAIL, AppConstants.STUDENT_TEL };
 	public static int currPageNum = 1;
 
-	public MainView() {
+	public MainView(String text) {
+	    this.username = text;
 		init();
 	}
 
@@ -63,7 +65,7 @@ public class MainView extends JFrame {
 		// north panel
 		jPanelNorth = new JPanel();
 		jPanelNorth.setLayout(new GridLayout(1, 5));
-		condition = new JTextField(AppConstants.PARAM_FIND_CONDITION);
+		condition = new JTextField("欢迎"+username+"老师登录…………");
 		condition.addKeyListener(new FindListener());
 		jPanelNorth.add(condition);
 		// query by name
@@ -225,7 +227,7 @@ public class MainView extends JFrame {
 		ninthColumn.setMinWidth(90);
 	}
 
-	private class FindListener extends KeyAdapter {
+	 class FindListener extends KeyAdapter {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
@@ -235,7 +237,7 @@ public class MainView extends JFrame {
 		}
 	}
 
-	private void find() {
+	private  void find() {
 		currPageNum = 0;
 		String param = condition.getText();
 		if ("".equals(param) || param == null) {

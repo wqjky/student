@@ -54,8 +54,7 @@ public class LoginView extends JFrame {
 		// enter key listener
 		password.addKeyListener(new LoginListener());
 		jPanelCenter.add(password);
-		jPanelCenter.add(new JLabel("----------------------------------------------"));
-		jPanelCenter.add(new JLabel("----------------------------------------------"));
+		jPanelCenter.add(new JLabel("欢迎您使用学生成绩管理系统"));
 
 		jPanelSouth = new JPanel();
 		jPanelSouth.setLayout(new GridLayout(1, 2));
@@ -98,10 +97,14 @@ public class LoginView extends JFrame {
 
 	private void check() {
 		AdminDAO adminDAO = (AdminDAO) BaseDAO.getAbilityDAO(DAO.AdminDAO);
-		if (adminDAO.queryForLogin(username.getText(), String.valueOf(password.getPassword()))) {
+		int admin = adminDAO.queryForLogin(username.getText(), String.valueOf(password.getPassword()));
+		if (admin==1) {
 			dispose();
-			new MainView();
-		} else {
+			new MainView(username.getText());
+		} else if (admin==2) {
+			dispose();
+			new StudentView(username.getText());
+		}else{
 			username.setText("");
 			password.setText("");
 		}
