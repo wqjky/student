@@ -11,7 +11,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2020-03-08 21:45:46
+Date: 2020-03-09 08:38:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -51,7 +51,7 @@ CREATE TABLE `student` (
   `sex` varchar(20) NOT NULL,
   `admin` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of student
@@ -61,3 +61,4 @@ INSERT INTO `student` VALUES ('19', '李四', '002', '理学院', '上海', '70'
 INSERT INTO `student` VALUES ('20', '王五', '003', '外国语学院', '北京', '88', 'wangwu@126.com', '13698765432', '女', 'student');
 INSERT INTO `student` VALUES ('22', '陈恬儿', '11', '1', '1', '1', '1', '1', '1', 'student');
 INSERT INTO `student` VALUES ('23', '888888', '0', '0', '0', '0', '0', '0', 'm', 'student');
+INSERT INTO `student` VALUES ('24', 'wqj', '20161554106', '信息工程学院', '河南', '80', 'wqj@qq.com', '18303601062', '男', null);
