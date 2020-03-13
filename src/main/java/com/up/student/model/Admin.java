@@ -15,11 +15,15 @@ public class Admin {
 	private String name;
 	private String username;
 	private String password;
-	private Integer admin;
+	private String admin;
 
 
-	public Integer getAdmin() {
+	public String getAdmin() {
 		return admin;
+	}
+	public void setAdmin(String admin){
+		this.admin = admin;
+
 	}
 	public void setName(String name) {
 		this.name = name;

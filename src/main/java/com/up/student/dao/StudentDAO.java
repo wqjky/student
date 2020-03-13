@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.up.student.base.BaseDAO;
+import com.up.student.model.Admin;
 import com.up.student.model.Student;
 
 /**
@@ -98,6 +99,30 @@ public class StudentDAO extends BaseDAO {
 		}
 		return result;
 	}
+	public boolean addAdmin(Student stu) {
+		boolean result = false;
+		if (stu == null) {
+			return result;
+		}
+		try {
+			// insert
+			String sql = "insert into admin(name,username,password,admin) values(?,?,?,?)";
+			String[] param = { stu.getName(), stu.getUsername(), stu.getPassword(), String.valueOf(stu.getAdmin())};
+			String sqls = "insert into student(name,sno,sex,department,hometown,mark,email,tel) values(?,?,?,?,?,?,?,?)";
+			String[] params = { stu.getName(), stu.getSno(), stu.getSex(), stu.getDepartment(), stu.getHomeTown(),
+					stu.getMark(), stu.getEmail(), stu.getTel() };
+			if (db.executeUpdate(sql, param) == 1) {
+				result = true;
+			}
+			if (db.executeUpdate(sqls, params) == 1) {
+				result = true;
+			}
+		} finally {
+			destroy();
+		}
+		return result;
+	}
+
 
 	// query by name
 	public String[][] queryByName(String name) {

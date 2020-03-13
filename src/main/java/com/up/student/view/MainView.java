@@ -79,20 +79,20 @@ public class MainView extends JFrame {
 		jButtonFind.addKeyListener(new FindListener());
 		// add
 		jPanelNorth.add(jButtonFind);
-		jButtonAdd = new JButton(AppConstants.PARAM_ADD);
+		jButtonAdd = new JButton("删除");
 		jButtonAdd.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddView();
+				new DeleteView();
 			}
 		});
 		jPanelNorth.add(jButtonAdd);
 		// delete
-		jButtonDelete = new JButton(AppConstants.PARAM_DELETE);
+		jButtonDelete = new JButton("添加学生");
 		jButtonDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new DeleteView();
+				new AddStudentView();
 			}
 		});
 		jPanelNorth.add(jButtonDelete);
