@@ -11,6 +11,7 @@ package com.up.student;
  * 
  */
 public class AppConstants {
+
 	// jdbc
 	public static final String JDBC_URL = "jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC" ;
 	public static final String JDBC_USERNAME = "root";

@@ -20,7 +20,7 @@ import com.up.student.model.Student;
  * 
  */
 public class StudentDAO extends BaseDAO {
-	private final int fieldNum = 9;
+	private final int fieldNum = 10;
 	private final int showNum = 15;
 	private static StudentDAO sd = null;
 
@@ -38,20 +38,15 @@ public class StudentDAO extends BaseDAO {
 			return result;
 		}
 		try {
-			// check
-			if (queryBySno(stu.getSno()) == 0) {
-				return result;
-			}
+
 			// update
-			String sql = "update student set sex=?,department=?,email=?,tel=?,hometown=?,mark=? where name=? and sno=?";
-			String[] param = { stu.getSex(), stu.getDepartment(), stu.getEmail(), stu.getTel(), stu.getHomeTown(),
-					stu.getMark(), stu.getName(), stu.getSno() };
+			String sql = "update student set department=?,email=?,tel=?,hometown=? where name=?";
+			String[] param = { stu.getDepartment(), stu.getEmail(), stu.getTel(), stu.getHomeTown(),
+					 stu.getName() };
 			int rowCount = db.executeUpdate(sql, param);
 			if (rowCount == 1) {
 				result = true;
 			}
-		} catch (SQLException se) {
-			se.printStackTrace();
 		} finally {
 			destroy();
 		}
@@ -85,10 +80,11 @@ public class StudentDAO extends BaseDAO {
 			if (queryBySno(stu.getSno()) == 1) {
 				return result;
 			}
+			System.out.println(stu.getClasz());
 			// insert
-			String sql = "insert into student(name,sno,sex,department,hometown,mark,email,tel) values(?,?,?,?,?,?,?,?)";
+			String sql = "insert into student(name,sno,sex,department,hometown,mark,email,tel,clasz) values(?,?,?,?,?,?,?,?,?)";
 			String[] param = { stu.getName(), stu.getSno(), stu.getSex(), stu.getDepartment(), stu.getHomeTown(),
-					stu.getMark(), stu.getEmail(), stu.getTel() };
+					stu.getMark(), stu.getEmail(), stu.getTel() ,stu.getClasz()};
 			if (db.executeUpdate(sql, param) == 1) {
 				result = true;
 			}
@@ -108,9 +104,9 @@ public class StudentDAO extends BaseDAO {
 			// insert
 			String sql = "insert into admin(name,username,password,admin) values(?,?,?,?)";
 			String[] param = { stu.getName(), stu.getUsername(), stu.getPassword(), String.valueOf(stu.getAdmin())};
-			String sqls = "insert into student(name,sno,sex,department,hometown,mark,email,tel) values(?,?,?,?,?,?,?,?)";
+			String sqls = "insert into student(name,sno,sex,department,hometown,mark,email,tel,clasz) values(?,?,?,?,?,?,?,?,?)";
 			String[] params = { stu.getName(), stu.getSno(), stu.getSex(), stu.getDepartment(), stu.getHomeTown(),
-					stu.getMark(), stu.getEmail(), stu.getTel() };
+					stu.getMark(), stu.getEmail(), stu.getTel(),stu.getClasz() };
 			if (db.executeUpdate(sql, param) == 1) {
 				result = true;
 			}
@@ -192,6 +188,7 @@ public class StudentDAO extends BaseDAO {
 		Student stu = new Student();
 		stu.setId(i + 1);
 		stu.setName(rs.getString("name"));
+		stu.setClasz(rs.getString("clasz"));
 		stu.setDepartment(rs.getString("department"));
 		stu.setEmail(rs.getString("email"));
 		stu.setHomeTown(rs.getString("hometown"));
@@ -205,15 +202,17 @@ public class StudentDAO extends BaseDAO {
 	// 将list中记录添加到二维数组中
 	private void buildResult(String[][] result, List<Student> stus, int j) {
 		Student stu = stus.get(j);
+		System.out.println("00000000000"+"----"+stu.getClasz());
 		result[j][0] = String.valueOf(stu.getId());
 		result[j][1] = stu.getName();
-		result[j][2] = stu.getSno();
-		result[j][3] = stu.getSex();
-		result[j][4] = stu.getDepartment();
-		result[j][5] = stu.getHomeTown();
-		result[j][6] = stu.getMark();
-		result[j][7] = stu.getEmail();
-		result[j][8] = stu.getTel();
+		result[j][2] = stu.getClasz();
+		result[j][3] = stu.getSno();
+		result[j][4] = stu.getSex();
+		result[j][5] = stu.getDepartment();
+		result[j][6] = stu.getHomeTown();
+		result[j][7] = stu.getMark();
+		result[j][8] = stu.getEmail();
+		result[j][9] = stu.getTel();
 	}
 
 	// query by sno

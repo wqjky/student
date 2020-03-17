@@ -49,7 +49,7 @@ public class StudentView extends JFrame {
     private DefaultTableModel myTableModel;
     private String admin;
 
-    public static String[] column = { "id", AppConstants.STUDENT_NAME, AppConstants.STUDENT_SNO,
+    public static String[] column = { "id", AppConstants.STUDENT_NAME,"班级", AppConstants.STUDENT_SNO,
             AppConstants.STUDENT_SEX, AppConstants.STUDENT_DEPARTMETN, AppConstants.STUDENT_HOMETOWN,
             AppConstants.STUDENT_MARK, AppConstants.STUDENT_EMAIL, AppConstants.STUDENT_TEL };
     public static int currPageNum = 1;
@@ -108,6 +108,14 @@ public class StudentView extends JFrame {
         });
         jPanelNorth.add(jButtonUpdate);
 */
+       jButtonUpdate = new JButton("更新个人信息");
+        jButtonUpdate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new UpdateStudentView(username);
+            }
+        });
+        jPanelNorth.add(jButtonUpdate);
         // center panel
         jPanelCenter = new JPanel();
         jPanelCenter.setLayout(new GridLayout(1, 1));
@@ -128,67 +136,10 @@ public class StudentView extends JFrame {
         jPanelSouth = new JPanel();
         jPanelSouth.setLayout(new GridLayout(1, 5));
 
-        jButtonFirst = new JButton(AppConstants.MAINVIEW_FIRST);
-        jButtonFirst.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                currPageNum = 1;
-                String[][] result = ((StudentDAO) BaseDAO.getAbilityDAO(DAO.StudentDAO)).queryByName(username);
-                condition.setText("");
-                initJTable(MainView.jTable, result);
-                currPageNumJLabel.setText(AppConstants.MAINVIEW_FIND_JLABEL);
-            }
-        });
-        jButtonPre = new JButton(AppConstants.MAINVIEW_PRE);
-        jButtonPre.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                currPageNum--;
-                if (currPageNum <= 0) {
-                    currPageNum = 1;
-                }
-                String[][] result = ((StudentDAO) BaseDAO.getAbilityDAO(DAO.StudentDAO)).list(currPageNum);
-                initJTable(jTable, result);
-                currPageNumJLabel.setText(AppConstants.MAINVIEW_PAGENUM_JLABEL_DI + currPageNum
-                        + AppConstants.MAINVIEW_PAGENUM_JLABEL_YE);
-            }
-        });
-        jButtonNext = new JButton(AppConstants.MAINVIEW_NEXT);
-        jButtonNext.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                currPageNum++;
-                if (currPageNum > maxPageNum) {
-                    currPageNum = maxPageNum;
-                }
-                String[][] result = ((StudentDAO) BaseDAO.getAbilityDAO(DAO.StudentDAO)).list(currPageNum);
-                initJTable(jTable, result);
-                currPageNumJLabel.setText(AppConstants.MAINVIEW_PAGENUM_JLABEL_DI + currPageNum
-                        + AppConstants.MAINVIEW_PAGENUM_JLABEL_YE);
-            }
-        });
-        jButtonLast = new JButton(AppConstants.MAINVIEW_LAST);
-        jButtonLast.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                currPageNum = maxPageNum;
-                String[][] result = ((StudentDAO) BaseDAO.getAbilityDAO(DAO.StudentDAO)).list(currPageNum);
-                initJTable(jTable, result);
-                currPageNumJLabel.setText(AppConstants.MAINVIEW_PAGENUM_JLABEL_DI + currPageNum
-                        + AppConstants.MAINVIEW_PAGENUM_JLABEL_YE);
-            }
-        });
 
-        currPageNumJLabel = new JLabel(
-                AppConstants.MAINVIEW_PAGENUM_JLABEL_DI + currPageNum + AppConstants.MAINVIEW_PAGENUM_JLABEL_YE);
-        currPageNumJLabel.setHorizontalAlignment(JLabel.CENTER);
 
-        jPanelSouth.add(jButtonFirst);
-        jPanelSouth.add(jButtonPre);
-        jPanelSouth.add(currPageNumJLabel);
-        jPanelSouth.add(jButtonNext);
-        jPanelSouth.add(jButtonLast);
+
 
         this.add(jPanelNorth, BorderLayout.NORTH);
         this.add(jPanelCenter, BorderLayout.CENTER);

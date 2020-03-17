@@ -22,6 +22,16 @@ public class Student {
 	private String tel;// 联系方式
 	private String admin;
 
+	public String getClasz() {
+		return clasz;
+	}
+
+	public void setClasz(String clasz) {
+		this.clasz = clasz;
+	}
+
+	private String clasz;
+
 	public String getUsername() {
 		return username;
 	}

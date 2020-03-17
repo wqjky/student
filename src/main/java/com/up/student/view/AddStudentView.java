@@ -25,7 +25,7 @@ public class AddStudentView extends JFrame {
 
     private JPanel jPanelCenter, jPanelSouth;
     private JButton addButton, exitButton;
-    private JTextField name, sno, department, hometown, mark, email, tel, sex,username,password;
+    private JTextField name, sno, department, hometown, mark, email, tel, sex,username,password,clasz;
 
     public AddStudentView() {
         init();
@@ -34,7 +34,7 @@ public class AddStudentView extends JFrame {
     private void init() {
         setTitle(AppConstants.ADDVIEW_TITLE);
         jPanelCenter = new JPanel();
-        jPanelCenter.setLayout(new GridLayout(13, 2));
+        jPanelCenter.setLayout(new GridLayout(12, 2));
         jPanelCenter.add(new JLabel(AppConstants.STUDENT_NAME));
         name = new JTextField();
         jPanelCenter.add(name);
@@ -65,6 +65,9 @@ public class AddStudentView extends JFrame {
         jPanelCenter.add(new JLabel("密码"));
         password = new JTextField();
         jPanelCenter.add(password);
+        jPanelCenter.add(new JLabel("班级"));
+        clasz = new JTextField();
+        jPanelCenter.add(clasz);
         jPanelCenter.add(new JLabel("-------------------------------------------------"));
         jPanelCenter.add(new JLabel("-------------------------------------------------"));
 
@@ -132,6 +135,7 @@ public class AddStudentView extends JFrame {
         stu.setSno(sno.getText());
         stu.setTel(tel.getText());
         stu.setSex(sex.getText());
+        stu.setClasz(clasz.getText());
     }
 
     private void setEmpty() {
