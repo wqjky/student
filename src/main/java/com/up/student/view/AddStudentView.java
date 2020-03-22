@@ -131,6 +131,7 @@ public class AddStudentView extends JFrame {
         stu.setEmail(email.getText());
         stu.setHomeTown(hometown.getText());
         stu.setMark(mark.getText());
+        stu.setMark(mark.getText());
         stu.setName(name.getText());
         stu.setSno(sno.getText());
         stu.setTel(tel.getText());

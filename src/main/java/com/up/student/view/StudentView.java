@@ -57,6 +57,7 @@ public class StudentView extends JFrame {
 
 
     public StudentView(String username) {
+        System.out.println(username);
         this.username = username;
         init();
     }

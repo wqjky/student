@@ -110,6 +110,7 @@ public class UpdateStudentView extends JFrame {
 
 	private void buildStudent(Student stu) {
 		stu.setName(username);
+        stu.setUsername(username);
 		stu.setDepartment(department.getText());
 		stu.setEmail(email.getText());
 		stu.setHomeTown(hometown.getText());

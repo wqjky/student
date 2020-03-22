@@ -15,6 +15,8 @@ import com.up.student.base.BaseDAO;
 import com.up.student.model.Admin;
 import com.up.student.model.Student;
 
+import javax.sound.midi.Soundbank;
+
 /**
  * 模块说明： 学生增删改查
  * 
@@ -40,9 +42,10 @@ public class StudentDAO extends BaseDAO {
 		try {
 
 			// update
-			String sql = "update student set department=?,email=?,tel=?,hometown=? where name=?";
+			String sql = "update student set department=?,email=?,tel=?,hometown=? where username=?";
 			String[] param = { stu.getDepartment(), stu.getEmail(), stu.getTel(), stu.getHomeTown(),
-					 stu.getName() };
+					 stu.getUsername() };
+            System.out.println(stu.getUsername());
 			int rowCount = db.executeUpdate(sql, param);
 			if (rowCount == 1) {
 				result = true;
@@ -104,9 +107,9 @@ public class StudentDAO extends BaseDAO {
 			// insert
 			String sql = "insert into admin(name,username,password,admin) values(?,?,?,?)";
 			String[] param = { stu.getName(), stu.getUsername(), stu.getPassword(), String.valueOf(stu.getAdmin())};
-			String sqls = "insert into student(name,sno,sex,department,hometown,mark,email,tel,clasz) values(?,?,?,?,?,?,?,?,?)";
+			String sqls = "insert into student(name,sno,sex,department,hometown,mark,email,tel,clasz,username) values(?,?,?,?,?,?,?,?,?,?)";
 			String[] params = { stu.getName(), stu.getSno(), stu.getSex(), stu.getDepartment(), stu.getHomeTown(),
-					stu.getMark(), stu.getEmail(), stu.getTel(),stu.getClasz() };
+					stu.getMark(), stu.getEmail(), stu.getTel(),stu.getClasz() ,stu.getUsername()};
 			if (db.executeUpdate(sql, param) == 1) {
 				result = true;
 			}
@@ -128,7 +131,7 @@ public class StudentDAO extends BaseDAO {
 		}
 		List<Student> stus = new ArrayList<Student>();
 		int i = 0;
-		String sql = "select * from student where name like ?";
+		String sql = "select * from student where username like ?";
 		String[] param = { "%" + name + "%" };
 		rs = db.executeQuery(sql, param);
 		try {

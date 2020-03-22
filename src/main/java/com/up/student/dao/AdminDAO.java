@@ -35,6 +35,7 @@ public class AdminDAO extends BaseDAO {
 		rs = db.executeQuery(sql, param);
 		try {
 			if (rs.next()) {
+				System.out.println(rs.getString("admin"));
 				if(rs.getString("admin").equals("admin")){
 					return 1;
 				}else if(rs.getString("admin").equals("student")){
